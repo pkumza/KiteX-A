@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
-RUN_NAME="kitex.service.a"
+RUN_NAME="kitex.service.c"
 
-mkdir -p output/bin output/conf
+mkdir -p output/bin
 cp script/* output/
-cp conf/* output/conf/
 chmod +x output/bootstrap.sh
 
 if [ "$IS_SYSTEM_TEST_ENV" != "1" ]; then

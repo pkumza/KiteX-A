@@ -1,4 +1,4 @@
-module github.com/Duslia997/KiteX-A/KiteX-A
+module github.com/Duslia997/KiteX-A
 
 go 1.13
 

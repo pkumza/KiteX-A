@@ -3,7 +3,7 @@
 package serviceb
 
 import (
-	"github.com/Duslia997/KiteX-B/KiteX-B/kitex_gen/api"
+	"github.com/Duslia997/KiteX-A/KiteX-B/kitex_gen/api"
 	"github.com/cloudwego/kitex/server"
 )
 

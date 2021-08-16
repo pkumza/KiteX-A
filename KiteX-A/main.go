@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	svr := api.NewServer(new(ServiceAImpl))
+	svr := api.NewServer(new(ServiceAImpl), )
 
 	err := svr.Run()
 
