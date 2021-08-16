@@ -1,12 +1,12 @@
 package main
 
 import (
-	api "kitex.service.a/kitex_gen/api/servicea"
+	api "kitex.service.b/kitex_gen/api/serviceb"
 	"log"
 )
 
 func main() {
-	svr := api.NewServer(new(ServiceAImpl))
+	svr := api.NewServer(new(ServiceBImpl))
 
 	err := svr.Run()
 

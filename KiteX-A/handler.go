@@ -2,14 +2,14 @@ package main
 
 import (
 	"context"
-	"github.com/KiteX-A/kitex_gen/api"
+	"kitex.service.a/kitex_gen/api"
 )
 
-// HelloImpl implements the last service interface defined in the IDL.
-type HelloImpl struct{}
+// ServiceAImpl implements the last service interface defined in the IDL.
+type ServiceAImpl struct{}
 
-// Echo implements the HelloImpl interface.
-func (s *HelloImpl) Echo(ctx context.Context, req *api.Request) (resp *api.Response, err error) {
+// ServiceA implements the ServiceAImpl interface.
+func (s *ServiceAImpl) ServiceA(ctx context.Context, req *api.Request) (resp *api.Response, err error) {
 	// TODO: Your code here...
 	return
 }

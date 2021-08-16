@@ -1,4 +1,4 @@
-module kitex.service.a
+module kitex.service.b
 
 go 1.16
 

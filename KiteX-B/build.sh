@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-RUN_NAME="kitex.service.a"
+RUN_NAME="kitex.service.b"
 
 mkdir -p output/bin
 cp script/* output/
