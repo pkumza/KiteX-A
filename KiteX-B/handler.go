@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"kitex.service.b/kitex_gen/api"
+	"github.com/Duslia997/KiteX-B/KiteX-B/kitex_gen/api"
 )
 
 // ServiceBImpl implements the last service interface defined in the IDL.

@@ -4,9 +4,9 @@ package servicea
 
 import (
 	"context"
+	"github.com/Duslia997/KiteX-A/KiteX-A/kitex_gen/api"
 	"github.com/cloudwego/kitex/client"
 	kitex "github.com/cloudwego/kitex/pkg/serviceinfo"
-	"kitex.service.a/kitex_gen/api"
 )
 
 func serviceInfo() *kitex.ServiceInfo {

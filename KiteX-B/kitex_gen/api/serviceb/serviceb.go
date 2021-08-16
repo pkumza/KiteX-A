@@ -4,9 +4,9 @@ package serviceb
 
 import (
 	"context"
+	"github.com/Duslia997/KiteX-B/KiteX-B/kitex_gen/api"
 	"github.com/cloudwego/kitex/client"
 	kitex "github.com/cloudwego/kitex/pkg/serviceinfo"
-	"kitex.service.b/kitex_gen/api"
 )
 
 func serviceInfo() *kitex.ServiceInfo {

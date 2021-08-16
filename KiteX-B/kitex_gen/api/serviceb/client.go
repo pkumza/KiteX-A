@@ -4,9 +4,9 @@ package serviceb
 
 import (
 	"context"
+	"github.com/Duslia997/KiteX-B/KiteX-B/kitex_gen/api"
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/client/callopt"
-	"kitex.service.b/kitex_gen/api"
 )
 
 // Client is designed to provide IDL-compatible methods with call-option parameter for kitex framework.

@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"kitex.service.a/kitex_gen/api"
+	"github.com/Duslia997/KiteX-A/KiteX-A/kitex_gen/api"
 )
 
 // ServiceAImpl implements the last service interface defined in the IDL.

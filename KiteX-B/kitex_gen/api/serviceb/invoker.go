@@ -3,8 +3,8 @@
 package serviceb
 
 import (
+	"github.com/Duslia997/KiteX-B/KiteX-B/kitex_gen/api"
 	"github.com/cloudwego/kitex/server"
-	"kitex.service.b/kitex_gen/api"
 )
 
 // NewInvoker creates a server.Invoker with the given handler and options.

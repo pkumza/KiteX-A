@@ -4,9 +4,9 @@ package servicea
 
 import (
 	"context"
+	"github.com/Duslia997/KiteX-A/KiteX-A/kitex_gen/api"
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/client/callopt"
-	"kitex.service.a/kitex_gen/api"
 )
 
 // Client is designed to provide IDL-compatible methods with call-option parameter for kitex framework.

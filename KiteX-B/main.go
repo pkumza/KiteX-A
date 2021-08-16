@@ -1,7 +1,7 @@
 package main
 
 import (
-	api "kitex.service.b/kitex_gen/api/serviceb"
+	api "github.com/Duslia997/KiteX-B/KiteX-B/kitex_gen/api/serviceb"
 	"log"
 )
 

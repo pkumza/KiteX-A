@@ -3,8 +3,8 @@
 package servicea
 
 import (
+	"github.com/Duslia997/KiteX-A/KiteX-A/kitex_gen/api"
 	"github.com/cloudwego/kitex/server"
-	"kitex.service.a/kitex_gen/api"
 )
 
 // NewInvoker creates a server.Invoker with the given handler and options.

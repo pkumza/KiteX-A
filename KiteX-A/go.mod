@@ -1,6 +1,6 @@
-module kitex.service.a
+module github.com/Duslia997/KiteX-A/KiteX-A
 
-go 1.16
+go 1.13
 
 require (
 	github.com/apache/thrift v0.13.0
