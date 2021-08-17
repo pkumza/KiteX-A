@@ -3,15 +3,16 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/Duslia997/KiteX-A/KiteX-A/kitex_gen/api"
-	"github.com/Duslia997/KiteX-A/KiteX-A/kitex_gen/api/servicea"
-	"github.com/cloudwego/kitex/client"
-	"github.com/cloudwego/kitex/pkg/connpool"
 	"log"
 	"runtime/debug"
 	"sync"
 	"sync/atomic"
 	"time"
+
+	"github.com/Duslia997/KiteX-A/KiteX-A/kitex_gen/api"
+	"github.com/Duslia997/KiteX-A/KiteX-A/kitex_gen/api/servicea"
+	"github.com/cloudwego/kitex/client"
+	"github.com/cloudwego/kitex/pkg/connpool"
 )
 
 var (
@@ -57,12 +58,18 @@ func run() {
 
 func init() {
 	var err error
-	options := client.WithLongConnection(connpool.IdleConfig{
+
+	options := []client.Option{}
+	options = append(options, client.WithLongConnection(connpool.IdleConfig{
 		MaxIdlePerAddress: 100,
 		MaxIdleGlobal:     1000,
 		MaxIdleTimeout:    60 * time.Second,
-	})
-	serverAClient, err = servicea.NewClient("servicea", client.WithHostPorts("0.0.0.0:8888"), options)
+	}))
+	options = append(options, client.WithRPCTimeout(time.Second*5))
+	options = append(options, client.WithConnectTimeout(time.Millisecond*50))
+	options = append(options, client.WithHostPorts("0.0.0.0:8888"))
+
+	serverAClient, err = servicea.NewClient("servicea", options...)
 	if err != nil {
 		panic(err)
 	}
