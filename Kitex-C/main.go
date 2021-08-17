@@ -7,7 +7,10 @@ import (
 	"github.com/Duslia997/KiteX-A/KiteX-A/kitex_gen/api/servicea"
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/connpool"
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"log"
+	"net/http"
 	"runtime/debug"
 	"sync"
 	"sync/atomic"
@@ -22,6 +25,16 @@ var (
 
 const (
 	Concurrent = 100
+)
+
+var (
+	qpsCounter = prometheus.NewCounterVec(
+		prometheus.CounterOpts{
+			Name: "kitex_rpc_qps",
+			Help: "kitex qps",
+		},
+		[]string{"status"},
+	)
 )
 
 func sendReq(waitGroup *sync.WaitGroup) {
@@ -39,6 +52,9 @@ func sendReq(waitGroup *sync.WaitGroup) {
 		if err != nil {
 			log.Println("resp = ", resp, " err = ", err)
 			atomic.AddUint64(&errCount, 1)
+			qpsCounter.With(prometheus.Labels{"status": "err"}).Inc()
+		} else {
+			qpsCounter.With(prometheus.Labels{"status": "success"}).Inc()
 		}
 
 		atomic.AddUint64(&count, 1)
@@ -82,7 +98,23 @@ func init() {
 	}()
 }
 
+func initPrometheus() {
+	prometheus.MustRegister(qpsCounter)
+
+	// Expose the registered metrics via HTTP.
+	http.Handle("/metrics", promhttp.HandlerFor(
+		prometheus.DefaultGatherer,
+		promhttp.HandlerOpts{
+			// Opt into OpenMetrics to support exemplars.
+			EnableOpenMetrics: true,
+		},
+	))
+	log.Fatal(http.ListenAndServe(":8080", nil))
+}
+
 func main() {
+	go initPrometheus()
+
 	fmt.Println("run")
 	run()
 	fmt.Println("run exit")
