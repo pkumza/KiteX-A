@@ -16,7 +16,7 @@ server_b)
   ;;
 
 server_c)
-  PathPre="KiteX-C"
+  PathPre="Kitex-C"
   RUN_NAME="kitex.service.c"
   ;;
 
