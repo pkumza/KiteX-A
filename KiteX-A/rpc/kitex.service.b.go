@@ -4,6 +4,7 @@ import (
 	"time"
 
 	"github.com/Duslia997/KiteX-A/KiteX-B/kitex_gen/api/serviceb"
+	"github.com/Duslia997/KiteX-A/pkg/zlog"
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/connpool"
 )
@@ -21,6 +22,8 @@ func init() {
 	options = append(options, client.WithRPCTimeout(time.Second*5))
 	options = append(options, client.WithConnectTimeout(time.Millisecond*50))
 	options = append(options, client.WithHostPorts("0.0.0.0:8887"))
+	options = append(options, client.WithMiddlewareBuilder(zlog.LogMiddleware))
+	options = append(options, client.WithLogger(zlog.New()))
 
 	ServerBClient, err = serviceb.NewClient("serviceb", options...)
 	if err != nil {
