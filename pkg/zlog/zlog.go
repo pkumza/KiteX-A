@@ -14,6 +14,10 @@ type Zlog struct {
 func New() klog.FormatLogger {
 	z := &Zlog{}
 	logDir := getLogDir()
+	err := os.MkdirAll(logDir, 0755)
+	if err != nil {
+		panic(err)
+	}
 	logFile, err := os.Create(logDir + "/app.log")
 	if err != nil {
 		panic(err)
