@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"runtime/debug"
+	"strconv"
 	"sync"
 	"sync/atomic"
 	"time"
@@ -25,17 +26,19 @@ const (
 	Concurrent = 100
 )
 
-func sendReq(waitGroup *sync.WaitGroup) {
+func sendReq(workID int64, waitGroup *sync.WaitGroup) {
 	defer func() {
 		if err := recover(); err != nil {
-			log.Println("Test failed %v, %s.", err, string(debug.Stack()))
+			log.Printf("Test failed %v, %s.\n", err, string(debug.Stack()))
 		}
 		waitGroup.Done()
 	}()
-
+	var cnt int64 = 0
+	reqPrefix := "worker" + strconv.FormatInt(workID, 10) + "'s request"
 	for {
 		req := api.NewRequest()
-		req.SetMessage("test")
+		req.SetMessage(reqPrefix + strconv.FormatInt(cnt, 10))
+		cnt++
 		resp, err := serverAClient.ServiceA(context.Background(), req)
 		if err != nil {
 			log.Println("resp = ", resp, " err = ", err)
@@ -51,7 +54,7 @@ func run() {
 	var wg sync.WaitGroup
 	wg.Add(Concurrent)
 	for i := 0; i < Concurrent; i++ {
-		go sendReq(&wg)
+		go sendReq(int64(i), &wg)
 	}
 	wg.Wait()
 }
